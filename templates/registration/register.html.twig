@@ -10,7 +10,9 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-
+        <br>
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+
+    <a href="{{ path("app_home_controller") }}">Home</a>
 {% endblock %}
