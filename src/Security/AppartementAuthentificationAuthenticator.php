@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,11 +29,12 @@ class AppartementAuthentificationAuthenticator extends AbstractFormLoginAuthenti
     private $urlGenerator;
     private $csrfTokenManager;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager)
+    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserRepository $userRepository)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->userRepository = $userRepository;
     }
 
     public function supports(Request $request)
@@ -74,9 +76,11 @@ class AppartementAuthentificationAuthenticator extends AbstractFormLoginAuthenti
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // Check the user's password or other credentials and return true or false
-        // If there are no credentials to check, you can just return true
-        throw new \Exception('TODO: check the credentials inside '.__FILE__);
+        return
+            isset($credentials) &&
+            $credentials['username'] == $user->getUsername() &&
+            $credentials['password'] == $user->getPassword()
+        ;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
