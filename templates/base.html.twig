@@ -7,15 +7,12 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset("build/app.css") }}">
-            <style>
-                body {
-                    margin: 50px;
-                }
-            </style>
+            {% block additionnal_stylesheets %}{% endblock %}
         {% endblock %}
 
         {% block javascripts %}
-            <link rel="stylesheet" href="{{ asset("build/app.js") }}">
+            <script type="application/javascript" src="{{ asset("build/app.js") }}"></script>
+            {% block additionnal_javascripts %}{% endblock %}
         {% endblock %}
     </head>
     <body>
