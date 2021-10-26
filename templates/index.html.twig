@@ -16,6 +16,9 @@
                     In addition, a follow-up is also made available to know in which state the apartment has been left.
                 </p>
                 <a class="btn btn-dark btn-xl" href="{{ path('app_dashboard') }}">Go manage my apartment !</a>
+                {% if is_granted('ROLE_USER') %}
+                    <a class="btn btn-danger btn-xl" href="{{ path('app_logout') }}">Logout</a>
+               {% endif %}
             </div>
         </div>
     </div>
