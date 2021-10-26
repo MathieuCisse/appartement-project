@@ -7,12 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/", name="app_home_controller")
+ * @Route("/dashboard", name="app_dashboard")
  */
-class HomeController extends AbstractController
+class DashboardController extends AbstractController
 {
     public function __invoke(): Response
     {
-        return $this->render('index.html.twig');
+        return $this->render('dashboard/dashboard.html.twig');
     }
 }

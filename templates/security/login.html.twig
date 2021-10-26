@@ -7,7 +7,14 @@
 {% endblock %}
 
 {% block body %}
-<form class="form-sign text-center" method="post">
+<form class="form-sign text-center shadow bg-white rounded" method="post">
+
+    <div class="sticky-top float-right">
+        <a href="{{ path('app_logout') }}">
+            <i class="fas fa-home fa-2x"></i>
+        </a>
+    </div>
+
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" placeholder="Username" required autofocus>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Password" required>
